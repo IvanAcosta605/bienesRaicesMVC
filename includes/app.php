@@ -6,6 +6,6 @@
     //Conectarnos a la Base de Datos
     $db = conectarDB();
 
-    use App\ActiveRecord;
+    use Model\ActiveRecord;
 
     ActiveRecord::setDB($db);

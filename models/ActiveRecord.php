@@ -1,5 +1,5 @@
 <?php
-    namespace App;
+    namespace Model;
     class ActiveRecord {
         //Base de Datos
         protected static $db;
