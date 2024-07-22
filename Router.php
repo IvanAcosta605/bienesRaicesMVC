@@ -20,7 +20,14 @@
             }
         }
         //Mostrar una Vista
-        public function render($view){
+        public function render($view, $datos=[]){
+            foreach($datos as $key=>$value){
+                $$key = $value;
+            }
+            ob_start(); //Almacenamiento en memoria durante un momento
             include __DIR__ . "/views/$view.php";
+
+            $contenido = ob_get_clean(); //Limpiar el Buffer
+            include __DIR__ . "/views/layout.php";
         }
     }
