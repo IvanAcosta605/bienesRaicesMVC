@@ -75,8 +75,24 @@
 
         }
 
-        public static function actualizar(){
-            echo "Actualizar";
+        public static function actualizar(Router $router){
+
+            $id = validarORedireccionar('/admin');
+
+            //Obtener los datos de la propiedad
+            $propiedad = Propiedad::find($id);
+
+            //Consultar para obtener los vendedores
+            $vendedores = Vendedor::all();
+
+            //Arreglo con mensaje de errores
+            $errores = Propiedad::getErrores();
+
+            $router->render('propiedades/actualizar', [
+                'propiedad' => $propiedad,
+                'vendedores' => $vendedores,
+                'errores' => $errores
+            ]);
         }
 
     }
