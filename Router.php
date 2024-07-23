@@ -1,14 +1,20 @@
 <?php
+
     namespace MVC;
+
     class Router{
+
         public $rutasGET = [];
         public $rutasPOST = [];
+
         public function get($url, $fn){
             $this->rutasGET[$url] = $fn;
         }
+
         public function post($url, $fn){
             $this->rutasPOST[$url] = $fn;
         }
+
         public function comprobarRutas(){
             $urlActual = $_SERVER['PATH_INFO'] ?? '/';
             $metodo = $_SERVER['REQUEST_METHOD'];
@@ -24,11 +30,13 @@
                 echo "Pagina NO Encontrada";
             }
         }
+
         //Mostrar una Vista
         public function render($view, $datos=[]){
             foreach($datos as $key=>$value){
                 $$key = $value;
             }
+            
             ob_start(); //Almacenamiento en memoria durante un momento
             include __DIR__ . "/views/$view.php";
 

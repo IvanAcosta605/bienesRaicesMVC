@@ -41,7 +41,7 @@
 
             //Redireccionar al usuario
             if($resultado){
-                header('Location: /bienesraices/admin/index.php?resultado=1');
+                header('Location: /admin?resultado=1');
             }
         }
 
