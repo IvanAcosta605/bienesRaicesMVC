@@ -88,6 +88,39 @@
             //Arreglo con mensaje de errores
             $errores = Propiedad::getErrores();
 
+            //Ejecutar el codigo despues de que el usuario envia el formulario
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                //Asugnar los atributos
+                $args = $_POST['propiedad'];
+
+                $propiedad->sincronizar($args);
+
+                //Validacion
+                $errores = $propiedad->validar();
+
+                /** SUBIDA DE ARCHIVOS */
+
+                //Generar nombre unico
+                $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+                //Setear la imagen
+                //Realiza un resize a la imagen con intervention version 3.4
+                if($_FILES['propiedad']['tmp_name']['imagen']){
+                    $manager = new Image(Driver::class);
+                    $image = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800,600);  
+                    $propiedad->setImagen($nombreImagen);
+                }
+
+                //Revisar que el array de errores este vacio
+                if(empty($errores)){
+                    if($_FILES['propiedad']['tmp_name']['imagen']){
+                        //Almacenar imagen
+                        $image->save(CARPETA_IMAGENES . $nombreImagen);
+                    }
+                    $propiedad->guardar();
+                }
+            }
+
             $router->render('propiedades/actualizar', [
                 'propiedad' => $propiedad,
                 'vendedores' => $vendedores,

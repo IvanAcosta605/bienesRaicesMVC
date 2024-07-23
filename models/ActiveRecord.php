@@ -63,7 +63,7 @@
 
             if($resultado){
                 //Redireccionar al usuario
-                header('Location: /bienesraices/admin/index.php?resultado=2');
+                header('Location: /admin?resultado=2');
             }
         }
 
@@ -73,7 +73,7 @@
             $resultado = self::$db->query($query);
             if($resultado){
                 $this->borrarImagen();
-                header('location: ../admin/index.php?resultado=3');
+                header('location: /admin?resultado=3');
             }
         }
 
