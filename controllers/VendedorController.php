@@ -5,7 +5,7 @@
     use MVC\Router;
     use Model\Vendedor;
 
-    class vendedorController{
+    class VendedorController{
         public static function crear(Router $router){
             $vendedor= new Vendedor;
             //Arreglo con mensaje de errores
