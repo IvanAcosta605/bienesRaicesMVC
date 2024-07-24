@@ -30,8 +30,37 @@
             ]);
         }
 
-        public static function actualizar(){
-            echo "Actualizar Vendedor";
+        public static function actualizar(Router $router){
+
+            $id = validarORedireccionar('/admin');
+
+            //Obtener los datos del vendedor
+            $vendedor = Vendedor::find($id);
+
+            //Arreglo con mensaje de errores
+            $errores = Vendedor::getErrores();
+
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+                //Asugnar los atributos
+                $args = $_POST['vendedor'];
+        
+                //Sincronizar objeto en memoria
+                $vendedor->sincronizar($args);
+        
+                //Validacion
+                $errores = $vendedor->validar();
+        
+                //Revisar que el array de errores este vacio
+                if(empty($errores)){
+                    $vendedor->guardar();
+                }
+            }
+
+            $router->render('vendedores/actualizar', [
+                'vendedor' => $vendedor,
+                'errores' => $errores
+            ]);
         }
 
         public static function eliminar(){
