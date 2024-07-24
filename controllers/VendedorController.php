@@ -64,6 +64,19 @@
         }
 
         public static function eliminar(){
-            echo "Eliminar Vendedor";
+
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                //Validar ID
+                $id = $_POST['id'];
+                $id = filter_var($id, FILTER_VALIDATE_INT);
+
+                if($id){
+                    $tipo = $_POST['tipo'];
+                    if(validarTipoContenido($tipo)){
+                        $vendedor=Vendedor::find($id);
+                        $vendedor->eliminar();
+                    }  
+                }
+            }
         }
     }
