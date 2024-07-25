@@ -20,7 +20,7 @@
                     <p><?php echo $propiedad->estacionamiento; ?></p>
                 </li>
             </ul>
-            <a class="boton-amarillo-block" href="anuncio.php?id=<?php echo $propiedad->id; ?>">Ver Propirdad</a>
+            <a class="boton-amarillo-block" href="/propiedad?id=<?php echo $propiedad->id; ?>">Ver Propirdad</a>
         </div><!--contenido-anuncio-->
     </div><!--anuncio-->
     <?php } ?>
