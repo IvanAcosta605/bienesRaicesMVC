@@ -34,9 +34,9 @@
             <p>Cómo desea ser contactado</p>
             <div class="forma-contacto">
                 <label for="contactar-telefono">Teléfono</label>
-                <input name="contacto" type="radio" value="telefono" id="contactar-telefono" name="contacto[contacto]" required>
+                <input type="radio" value="telefono" id="contactar-telefono" name="contacto[contacto]" required>
                 <label for="contactar-email">E-mail</label>
-                <input name="contacto" type="radio" value="email" id="contactar-email" name="contacto[contacto]" required>
+                <input type="radio" value="email" id="contactar-email" name="contacto[contacto]" required>
             </div>
             <p>Si eligió teléfono, seleccione la fecha y la hora</p>
             <label for="fecha">Fecha:</label>

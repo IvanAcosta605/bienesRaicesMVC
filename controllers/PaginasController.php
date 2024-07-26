@@ -56,6 +56,8 @@
 
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
+                $respuestas = $_POST['contacto'];
+
                 //Crear una instancia de PHPMailer
                 $phpmailer = new PHPMailer();
                 //Configurar SMTP
@@ -77,7 +79,21 @@
                 $phpmailer->CharSet = 'UTF-8';
 
                 //Definir el contenido
-                $contenido = '<html> <p>Tienes un Nuevo Nensaje</p> </html>';
+                $contenido = '<html>';
+                $contenido .= '<p>Tienes un Nuevo Nensaje</p>';
+                $contenido .= ' <p>Nombre: ' . $respuestas['nombre'] . '</p>';
+                $contenido .= ' <p>Email: ' . $respuestas['email'] . '</p>';
+                $contenido .= ' <p>Telefono: ' . $respuestas['telefono'] . '</p>';
+                $contenido .= ' <p>Mensaje: ' . $respuestas['mensaje'] . '</p>';
+                $contenido .= ' <p>Vende o Compra: ' . $respuestas['tipo'] . '</p>';
+                $contenido .= ' <p>Precio o Presupuesto: G$' . $respuestas['precio'] . '</p>';
+                $contenido .= ' <p>Contactar Mediante: ' . $respuestas['contacto'] . '</p>';
+                $contenido .= ' <p>Fecha Contacto: ' . $respuestas['fecha'] . '</p>';
+                $contenido .= ' <p>Hora: ' . $respuestas['hora'] . '</p>';
+                $contenido .= '</html>';
+
+
+
                 //$mail->Subject = 'Here is the subject';
                 $phpmailer->Body    = $contenido;
                 $phpmailer->AltBody = 'Esto es texto alternativo sin HTML';
