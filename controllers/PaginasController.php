@@ -54,6 +54,8 @@
 
         public static function contacto(Router $router){
 
+            $mensaje = null;
+
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
                 $respuestas = $_POST['contacto'];
@@ -82,14 +84,20 @@
                 $contenido = '<html>';
                 $contenido .= '<p>Tienes un Nuevo Nensaje</p>';
                 $contenido .= ' <p>Nombre: ' . $respuestas['nombre'] . '</p>';
-                $contenido .= ' <p>Email: ' . $respuestas['email'] . '</p>';
-                $contenido .= ' <p>Telefono: ' . $respuestas['telefono'] . '</p>';
                 $contenido .= ' <p>Mensaje: ' . $respuestas['mensaje'] . '</p>';
                 $contenido .= ' <p>Vende o Compra: ' . $respuestas['tipo'] . '</p>';
                 $contenido .= ' <p>Precio o Presupuesto: G$' . $respuestas['precio'] . '</p>';
                 $contenido .= ' <p>Contactar Mediante: ' . $respuestas['contacto'] . '</p>';
-                $contenido .= ' <p>Fecha Contacto: ' . $respuestas['fecha'] . '</p>';
-                $contenido .= ' <p>Hora: ' . $respuestas['hora'] . '</p>';
+
+                //Enviar de forma condicional el contacto
+                if($respuestas['contacto'] === 'telefono'){
+                    $contenido .= ' <p>Telefono: ' . $respuestas['telefono'] . '</p>';
+                    $contenido .= ' <p>Fecha Contacto: ' . $respuestas['fecha'] . '</p>';
+                    $contenido .= ' <p>Hora: ' . $respuestas['hora'] . '</p>';
+                }else{
+                    $contenido .= ' <p>Email: ' . $respuestas['email'] . '</p>';
+                }
+               
                 $contenido .= '</html>';
 
 
@@ -100,15 +108,15 @@
 
                 //Enviar el mail
                 if($phpmailer->send()){
-                    echo "Mensaje enviado correctamente";
+                    $mensaje = "Mensaje enviado correctamente";
                 }else{
-                    echo "El mensaje no se pudo enviar...";
+                    $mensaje = "El mensaje no se pudo enviar...";
                 }
 
             }
 
             $router->render('paginas/contacto', [
-                
+                'mensaje' => $mensaje
             ]);
         }
     }
