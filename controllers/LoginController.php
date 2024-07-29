@@ -18,12 +18,16 @@
 
                 if(empty($errores)){
                     //Verificar si el usuario existe
+                    $resultado = $auth->existeUsuario();
+
+                    if(!$resultado){
+                        $errores = Admin::getErrores();
+                    } else{
+                        //Verificar el password
 
 
-                    //Verificar el password
-
-
-                    //Autenticar al usuario
+                        //Autenticar al usuario
+                    }
                 }
             }
 
