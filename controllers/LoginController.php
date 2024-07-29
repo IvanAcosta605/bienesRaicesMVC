@@ -21,12 +21,19 @@
                     $resultado = $auth->existeUsuario();
 
                     if(!$resultado){
+                        //Verificar si el usuario existe (Mensaje de error)
                         $errores = Admin::getErrores();
                     } else{
                         //Verificar el password
+                        $autenticado = $auth->comprobarPassword($resultado);
 
+                        if($autenticado){
+                            //Autenticar al usuario
 
-                        //Autenticar al usuario
+                        } else{
+                            //Verificar el password (Mensaje de error)
+                            $errores = Admin::getErrores();
+                        }
                     }
                 }
             }
