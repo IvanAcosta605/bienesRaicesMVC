@@ -1,13 +1,13 @@
 <main class="contenedor seccion">
     <h1>Actualizar Vendedor</h1>
 
-    <a href="../index.php" class="boton boton-verde">Volver</a>
-
     <?php foreach($errores as $error): ?>
         <div class="alerta error">
             <?php echo $error; ?>
         </div>
     <?php endforeach; ?>
+
+    <a href="/admin" class="boton boton-verde">Volver</a>
 
     <form class="formulario" method="POST">
             
