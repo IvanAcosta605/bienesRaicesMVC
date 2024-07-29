@@ -29,7 +29,7 @@
 
                         if($autenticado){
                             //Autenticar al usuario
-
+                            $auth->autenticar();
                         } else{
                             //Verificar el password (Mensaje de error)
                             $errores = Admin::getErrores();
